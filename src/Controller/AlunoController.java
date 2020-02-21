@@ -8,17 +8,65 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.Set;
 
 import Model.Aluno;
+import Model.Cidade;
 import Model.Data;
+import Model.Endereço;
+import Model.Estado;
 
 public class AlunoController {
 
-	public void inserirAluno() {
+	public void consistirDados(String matricula, String nome, String dataNascimento, String rua, String numero,
+			String complemento, String bairro, String cidade, String estado, String cep, String sexo, String rg,
+			String cpf, String telefone, String senha) {
 
-		Data data1 = new Data(18, 05, 1982);
-		Aluno aluno1 = new Aluno(matricula, nome, data1, 'M');
+		//String endereçoCompleto = (rua+";"+numero+";"+complemento+";"+bairro+";"+cidade+";"+estado+";"+cep);
+		//String endereçoCompleto1 = new String();
 	
+		
+		
+		Aluno aluno = new Aluno();
+		Endereço endereço = new Endereço();
+		
+		int trfNumero = Integer.parseInt(numero);
+		
+		String dataQuebrada[] = dataNascimento.split("/");
+		int dia = Integer.parseInt(dataQuebrada[0]);
+		int mes = Integer.parseInt(dataQuebrada[1]);
+		int ano = Integer.parseInt(dataQuebrada[2]);
+		Data dt = new Data(dia, mes, ano);
+		
+		char sex = sexo.charAt(0);
+		
+
+		aluno.setMatricula(matricula);
+		aluno.setNome(nome);
+		aluno.setDataNascimento(dt);
+		endereço.setLogradouro(rua);
+		endereço.setNumero(trfNumero);
+		endereço.setComplemento(complemento);
+		endereço.setBairro(bairro);
+		Cidade cid = new Cidade(cidade);
+		endereço.setCidade(cid);
+		Estado est = new Estado();
+		est.setNome(estado); //não esquecer do uf
+		endereço.setEstado(est);
+		endereço.setCep(cep);
+		aluno.setSexo(sex);
+		aluno.setRg(rg);
+		aluno.setCpf(cpf);
+		aluno.setTelefone(telefone);
+		aluno.setSenha(senha);
+		
+		aluno.setEndereço(rua,numero,complemento,bairro,cidade,estado,cep);
+	
+		inserirAluno(aluno);
+	}
+
+	public void inserirAluno(Aluno aluno) {
+		
 
 		try {
 
@@ -26,15 +74,22 @@ public class AlunoController {
 			FileOutputStream arquivoOutput = new FileOutputStream(arquivo, true);
 			PrintStream gravador = new PrintStream(arquivoOutput);
 			// matricul
-			gravador.print(aluno1.getMatricula());
+			gravador.print(aluno.getMatricula());
 			gravador.print(";");
-			gravador.print(aluno1.getNome());
+			gravador.print(aluno.getNome());
 			gravador.print(";");
-			gravador.print(aluno1.getDataNascimento());
+			gravador.print(aluno.getEndereço());
 			gravador.print(";");
-			gravador.print(aluno1.getSexo());
-			gravador.print("\n");
-
+			gravador.print(aluno.getSexo());
+			gravador.print(";");
+			gravador.print(aluno.getRg());
+			gravador.print(";");
+			gravador.print(aluno.getCpf());
+			gravador.print(";");
+			gravador.print(aluno.getTelefone());
+			gravador.print(";");
+			gravador.print(aluno.getSenha());
+			gravador.print(";");
 
 			gravador.close();
 			arquivoOutput.close();
@@ -60,6 +115,11 @@ public class AlunoController {
 				System.out.println("Nome do aluno:      " + dados[1]);
 				System.out.println("Data de nascimento: " + dados[2]);
 				System.out.println("Sexo do aluno:      " + dados[3]);
+				System.out.println("RG do aluno:        " + dados[4]);
+				System.out.println("CPF do aluno:       " + dados[5]);
+				System.out.println("Endereço do aluno:  " + dados[6]);
+				System.out.println("Telefone do aluno:  " + dados[7]);
+				System.out.println("Senha do aluno:     " + dados[8]);
 				System.out.println("\n");
 
 				texto = leitor.readLine();
@@ -91,7 +151,7 @@ public class AlunoController {
 				int mesCompara = Integer.parseInt(dataQuebrada[1]);
 
 				if (mesCompara == mes) {
-					
+
 					System.out.println("Matricula do aluno: " + dados[0]);
 					System.out.println("Nome do aluno:      " + dados[1]);
 					System.out.println("Data de nascimento: " + dados[2]);
@@ -103,10 +163,10 @@ public class AlunoController {
 			}
 
 		} catch (FileNotFoundException e) {
-		
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 
