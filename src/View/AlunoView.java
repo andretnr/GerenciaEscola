@@ -310,7 +310,7 @@ public class AlunoView {
 		painelDaJanela.add(btnCancelar);
 
 		// configurações da tela
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// janela.setLocationRelativeTo(null);
 		janela.setSize(610, 400);
 		janela.setVisible(true);
@@ -330,8 +330,8 @@ public class AlunoView {
 	public class cancelarListenner implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(null, "Progarama encerrado");
-			System.exit(0);
+			JOptionPane.showMessageDialog(null, "Cadastro encerrado");
+			janela.dispose();
 		}
 	}
 

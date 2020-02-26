@@ -8,8 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.Set;
-
 import Model.Aluno;
 import Model.Cidade;
 import Model.Data;

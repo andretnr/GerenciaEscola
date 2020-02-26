@@ -22,12 +22,10 @@ public class MenuView {
 	private JMenuItem relatorioAluno;
 	private JMenuItem relatorioFuncionario;
 	private JPanel painelDaJanela;
-	
-	
 	public void iniciaGui() {
 		
 		//criar as instancias
-		janela = new JFrame("Exemplo de menu");
+		janela = new JFrame("Gerencia Escola");
 		barraMenu = new JMenuBar();
 		menuCadastro = new JMenu("Cadastro");
 		menuRelatorio = new JMenu("Relatório");
@@ -67,7 +65,7 @@ public class MenuView {
 		
 		
 		
-		//Configurar a ação do item menu 1
+		//Configurar a ação do item Cadasrode alunos
 		cadastroAluno.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -79,30 +77,37 @@ public class MenuView {
 			
 		});
 		
-		//Configurar a ação do item menu 2
-	//	cadastroFuncionario.addActionListener(new ActionListener() {
+		//Configurar a ação do item cadasro de funcionários
+		cadastroFuncionario.addActionListener(new ActionListener() {
 			
-		//	public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {
+				new FuncionarioView().iniciaGui();
 				
 			}
 			
 			
 			
-	//	});
+		});
 
-		
-		
-		
-		
-		
-		
-		
-		
+		cadastroCidade.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CidadeView().iniciaGui();
+				
 			}
+		});
+		
+		
+		
+		
+		
+		
+		
+
+	}	
 	
 	
-	
-//}
+}
 
 

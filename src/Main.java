@@ -3,7 +3,11 @@ import javax.swing.UIManager;
 import Controller.AlunoController;
 //import Controller.ProfessorController;
 import View.AlunoView;
+import View.CidadeView;
+import View.EstadoView;
+import View.FuncionarioView;
 import View.MenuView;
+import View.RelatorioAlunoView;
 
 public class Main {
 
@@ -14,7 +18,10 @@ public class Main {
 					.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 	} catch (Exception e) {
 			e.printStackTrace();
-		}
+	}
+		
+		//inicializado principal
+	//	 new MenuView().iniciaGui();
 
 		
 //		ProfessorController Professor = new ProfessorController();
@@ -25,7 +32,10 @@ public class Main {
 //		alunoController.listarTodos();
 //		alunoController.listarAniversariante(0);
 	//	new AlunoView().iniciaGui();
-	  new MenuView().iniciaGui();
+	//  new FuncionarioView().iniciaGui();
+	//	 new CidadeView().iniciaGui();
+	//	new RelatorioAlunoView().iniciaGui();
+	    new EstadoView().iniciarGui();
 
 	}
 
